@@ -11,20 +11,41 @@ let addTask = document.querySelector(".task-add");
 let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 
 function renderList() {
-  inputTask.innerHTML = "";
-
+  list.innerHTML = "";
   tasks.forEach((task, index) => {
     let newList = document.createElement("li");
     let newRemove = document.createElement("span");
 
     newList.innerHTML = task;
-    newList.classList.add("list-item");
     newRemove.innerHTML = "X";
+    newList.classList.add("list-item");
 
     newRemove.addEventListener("click", () => {
       tasks.splice(index, 1);
-      localStorage.setItem("tasks", JSON.parse("tasks"));
+      localStorage.setItem("tasks", JSON.stringify(tasks));
       renderList();
     });
+
+    list.appendChild(newList);
+    newList.appendChild(newRemove);
   });
 }
+
+addTask.addEventListener("click", function () {
+  if (inputTask.value.trim() !== "") {
+    tasks.push(inputTask.value.trim());
+    inputTask.value = "";
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+    renderList();
+  }
+});
+
+displayInput.addEventListener("click", function () {
+  inputContainer.style.display = "block";
+});
+
+closeInputContainer.addEventListener("click", function () {
+  inputContainer.style.display = "none";
+});
+
+renderList();
