@@ -60,7 +60,6 @@ h1 {
   flex-direction: column;
   gap: 10px;
   padding: 10px;
-  display: none;
 }
 
 .input {
@@ -75,6 +74,15 @@ h1 {
 
 .task-add {
   width: 100%;
+  background-color: white;
+  padding: 2px;
+}
+
+.display-input {
+  width: 100%;
+  background-color: black;
+  color: white;
+  padding: 10px;
 }
 
 .btn-container {
